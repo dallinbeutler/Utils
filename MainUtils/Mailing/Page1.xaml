@@ -1,0 +1,10 @@
+﻿<Page
+    x:Class="UtilsMain.Mailing.Page1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UtilsMain.Mailing">
+    
+    <Grid>
+
+    </Grid>
+</Page>

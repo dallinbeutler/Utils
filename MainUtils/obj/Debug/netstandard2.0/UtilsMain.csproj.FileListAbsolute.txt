@@ -1,0 +1,6 @@
+c:\users\beutlerd\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.deps.json
+c:\users\beutlerd\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.dll
+c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.csprojResolveAssemblyReference.cache
+c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.csproj.CoreCompileInputs.cache
+c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfoInputs.cache
+c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfo.cs

@@ -1,0 +1,6 @@
+c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\bin\Debug\netstandard2.0\UtilsExperimental.deps.json
+c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\bin\Debug\netstandard2.0\UtilsExperimental.dll
+c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.csprojResolveAssemblyReference.cache
+c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.csproj.CoreCompileInputs.cache
+c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.AssemblyInfoInputs.cache
+c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.AssemblyInfo.cs
