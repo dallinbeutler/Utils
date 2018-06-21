@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsNetFramework", "UtilsWPF\UtilsNetFramework.csproj", "{91314F8E-45B0-40AA-B26D-5FFED30F34CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsExperimental", "UtilsExperimental\UtilsExperimental.csproj", "{4E57BFB7-69EA-45DC-93FA-2C9AF2285D91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7BE8FD52-9DD9-4508-9903-51C39CC2A6B6} = {7BE8FD52-9DD9-4508-9903-51C39CC2A6B6}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
