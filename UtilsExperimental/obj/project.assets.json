@@ -2,12 +2,6 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "Costura.Fody/3.0.0": {
-        "type": "package",
-        "build": {
-          "build/Costura.Fody.targets": {}
-        }
-      },
       "FastMember/1.3.0": {
         "type": "package",
         "dependencies": {
@@ -1484,7 +1478,6 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Costura.Fody": "3.0.0",
           "FastMember": "1.3.0",
           "System.Reactive": "4.0.0"
         },
@@ -1498,26 +1491,6 @@
     }
   },
   "libraries": {
-    "Costura.Fody/3.0.0": {
-      "sha512": "3LjK5THP+uZjP6uj7eAFx9pMRe/yJtST1iNxcYn45Au9f22LepCZpL/taIQ8icUICngVCMniCMcwecU68r8K3Q==",
-      "type": "package",
-      "path": "costura.fody/3.0.0",
-      "files": [
-        "build/Costura.Fody.targets",
-        "costura.fody.3.0.0.nupkg.sha512",
-        "costura.fody.nuspec",
-        "lib/net46/Costura.dll",
-        "lib/net46/Costura.xml",
-        "netclassictask/Costura.Tasks.dll",
-        "netclassictask/Costura.Tasks.pdb",
-        "netclassicweaver/Costura.Fody.dll",
-        "netclassicweaver/Costura.Fody.pdb",
-        "netstandardtask/Costura.Tasks.dll",
-        "netstandardtask/Costura.Tasks.pdb",
-        "netstandardweaver/Costura.Fody.dll",
-        "netstandardweaver/Costura.Fody.pdb"
-      ]
-    },
     "FastMember/1.3.0": {
       "sha512": "AmB/DQoEvpbs6zDUjOk0pRhewKrvhZ+8mSK/8GrcmvkX7/HKjJxXtosmu5AXE9Lxw5cSZ0onnl27bb9J3bcp1A==",
       "type": "package",
@@ -5132,7 +5105,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Costura.Fody >= 3.0.0",
       "NETStandard.Library >= 2.0.1",
       "System.Reactive >= 4.0.0",
       "UtilsMain >= 1.0.0"
@@ -5183,10 +5155,6 @@
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
-          "Costura.Fody": {
-            "target": "Package",
-            "version": "[3.0.0, )"
-          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",

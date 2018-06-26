@@ -1,0 +1,6 @@
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsWPF\bin\Debug\UtilsNET.exe
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsWPF\bin\Debug\UtilsNET.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsWPF\obj\Debug\UtilsNetFramework.csprojResolveAssemblyReference.cache
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsWPF\obj\Debug\UtilsNetFramework.csproj.CoreCompileInputs.cache
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsWPF\obj\Debug\UtilsNET.exe
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsWPF\obj\Debug\UtilsNET.pdb

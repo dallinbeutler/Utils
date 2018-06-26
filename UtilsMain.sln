@@ -7,10 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsMain", "MainUtils\Util
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsNetFramework", "UtilsWPF\UtilsNetFramework.csproj", "{91314F8E-45B0-40AA-B26D-5FFED30F34CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsExperimental", "UtilsExperimental\UtilsExperimental.csproj", "{4E57BFB7-69EA-45DC-93FA-2C9AF2285D91}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7BE8FD52-9DD9-4508-9903-51C39CC2A6B6} = {7BE8FD52-9DD9-4508-9903-51C39CC2A6B6}
-	EndProjectSection
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "UtilsFS", "UtilsFS\UtilsFS.fsproj", "{DCD0F4CC-22F7-44DF-B964-87571F37CA34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +23,10 @@ Global
 		{91314F8E-45B0-40AA-B26D-5FFED30F34CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91314F8E-45B0-40AA-B26D-5FFED30F34CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91314F8E-45B0-40AA-B26D-5FFED30F34CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E57BFB7-69EA-45DC-93FA-2C9AF2285D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E57BFB7-69EA-45DC-93FA-2C9AF2285D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E57BFB7-69EA-45DC-93FA-2C9AF2285D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E57BFB7-69EA-45DC-93FA-2C9AF2285D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCD0F4CC-22F7-44DF-B964-87571F37CA34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCD0F4CC-22F7-44DF-B964-87571F37CA34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCD0F4CC-22F7-44DF-B964-87571F37CA34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCD0F4CC-22F7-44DF-B964-87571F37CA34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

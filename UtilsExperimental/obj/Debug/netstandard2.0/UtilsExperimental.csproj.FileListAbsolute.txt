@@ -4,3 +4,9 @@ c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard
 c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.csproj.CoreCompileInputs.cache
 c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.AssemblyInfoInputs.cache
 c:\users\beutlerd\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.AssemblyInfo.cs
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsExperimental\bin\Debug\netstandard2.0\UtilsExperimental.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsExperimental\bin\Debug\netstandard2.0\UtilsMain.dll
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsExperimental\bin\Debug\netstandard2.0\UtilsMain.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.csproj.CopyComplete
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.dll
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsExperimental\obj\Debug\netstandard2.0\UtilsExperimental.pdb

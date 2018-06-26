@@ -1,6 +1,8 @@
-c:\users\beutlerd\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.deps.json
-c:\users\beutlerd\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.dll
-c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.csprojResolveAssemblyReference.cache
-c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.csproj.CoreCompileInputs.cache
-c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfoInputs.cache
-c:\users\beutlerd\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfo.cs
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.deps.json
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.dll
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\bin\Debug\netstandard2.0\UtilsMain.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.csproj.CoreCompileInputs.cache
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfoInputs.cache
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfo.cs
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.dll
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.pdb
