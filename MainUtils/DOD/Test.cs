@@ -6,6 +6,9 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Diagnostics;
 using System.Timers;
+using System.Threading;
+using Utils.Extensions;
+using System.Linq;
 
 namespace UtilsMain.DOD
 {
@@ -33,16 +36,17 @@ namespace UtilsMain.DOD
         DataStream<Vec2> Velocity = new DataStream<Vec2>();
         DataStream<Vec2> Dimensions = new DataStream<Vec2>();
         DataStream<ConsoleColor> color= new DataStream<ConsoleColor>();
-
+        DataStream<string> fools = new DataStream<string>();
         public MainLoop()
         {
             Position[9] = new Vec2(0, 0);
             Velocity[9] = new Vec2(1,1);
             Dimensions[9] = new Vec2(1,1);
-            color[9] = ConsoleColor.Red; 
+            color[9] = ConsoleColor.Red;
+            var OPos = Position.ToObservable();
 
-            
-            Position.ToObservable().Subscribe((x)=> 
+
+            OPos.Subscribe((x)=> 
             {
                 using (Utils.ConsoleColor cc = new Utils.ConsoleColor(color[x.Entity]))
                 {
@@ -50,28 +54,31 @@ namespace UtilsMain.DOD
 
                 }
             });
+            Observable.Interval(new TimeSpan(0,0,1)).Subscribe((long ticks)=> { Position[9] += new Vec2(-1, -1); });
+
+            var acc = FastMember.TypeAccessor.Create(typeof(MainLoop));
+            var mem = acc.GetMembers();
         }
 
         public void Update()
         {
+            Console.WriteLine("start loop");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             ConsoleKeyInfo cki = new ConsoleKeyInfo();
             while (cki.Key != ConsoleKey.Escape)
             {
-                //if (stopwatch.ElapsedMilliseconds)
-                //{
-                Position[9] += new Vec2(2, 2);
-                //}
+
                 cki = Console.ReadKey();
                 if (cki.Key == ConsoleKey.Spacebar)
                 {
-                    color[9] = ConsoleColor.Green;
+                    var colvals = Enum.GetValues(typeof(ConsoleColor)).Cast<ConsoleColor>();
+                    color[9] = colvals.Random();
                 }
             }
-
         }
+
         public static class Program
         {
             public static void Main()

@@ -1,6 +1,6 @@
 C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\bin\Debug\netstandard2.0\UtilsFS.deps.json
 C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\bin\Debug\netstandard2.0\UtilsFS.dll
 C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\bin\Debug\netstandard2.0\UtilsFS.pdb
-C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\obj\Debug\netstandard2.0\UtilsFS.fsprojResolveAssemblyReference.cache
 C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\obj\Debug\netstandard2.0\UtilsFS.dll
 C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\obj\Debug\netstandard2.0\UtilsFS.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\UtilsFS\obj\Debug\netstandard2.0\UtilsFS.fsprojAssemblyReference.cache

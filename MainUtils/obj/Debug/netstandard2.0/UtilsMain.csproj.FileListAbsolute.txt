@@ -6,3 +6,4 @@ C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\Util
 C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.AssemblyInfo.cs
 C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.dll
 C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\MainUtils\obj\Debug\netstandard2.0\UtilsMain.csprojAssemblyReference.cache

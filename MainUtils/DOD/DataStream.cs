@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 namespace Utils.DOD
 {
     public interface INotifyCollectionChanged<T> {  event NotifyDataStreamChangedEventHandler<T> DataStreamChanged; }
-    public delegate void NotifyDataStreamChangedEventHandler<T>(object sender, NotifyDataStreamChangedEventArgs<T> args);
-    public struct NotifyDataStreamChangedEventArgs<T>
+    public delegate void NotifyDataStreamChangedEventHandler<T>(object sender, DSChangedArgs<T> args);
+    public struct DSChangedArgs<T>
     {
         public int Entity;
         public NotifyCollectionChangedAction Action;
         public T OldVal;
         public T NewVal;
 
-        public NotifyDataStreamChangedEventArgs(int entity, NotifyCollectionChangedAction action, T oldVal, T newVal){
+        public DSChangedArgs(int entity, NotifyCollectionChangedAction action, T oldVal, T newVal){
             Entity = entity;
             Action = action;
             OldVal = oldVal;
@@ -31,7 +31,9 @@ namespace Utils.DOD
     //{
 
     //}
-    public class DataStream<T> : INotifyCollectionChanged<T> where T : struct
+
+    // Can't store strings with struct restriction...
+    public class DataStream<T> : INotifyCollectionChanged<T> //where T //: struct
     {
         ConcurrentDictionary<int, T> Set;
         public event NotifyDataStreamChangedEventHandler<T> DataStreamChanged;
@@ -61,12 +63,12 @@ namespace Utils.DOD
                 if (!Set.ContainsKey(i))
                 {
                     Set[i] = value;
-                    DataStreamChanged.Invoke(this, new NotifyDataStreamChangedEventArgs<T>(i, NotifyCollectionChangedAction.Add, default(T), value));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new KeyValuePair<int, T>(i, value)));
+                    DataStreamChanged.Invoke(this, new DSChangedArgs<T>(i, NotifyCollectionChangedAction.Add, default(T), value));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new KeyValuePair<int, T>(i, value)));
                 }
                 else if (!EqualityComparer<T>.Default.Equals(Set[i], value))
                 {
                     Set[i] = value;
-                    DataStreamChanged.Invoke(this, new NotifyDataStreamChangedEventArgs<T>(i, NotifyCollectionChangedAction.Replace, default(T), value));//(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, new KeyValuePair<int, T>(i, value)));
+                    DataStreamChanged.Invoke(this, new DSChangedArgs<T>(i, NotifyCollectionChangedAction.Replace, default(T), value));//(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, new KeyValuePair<int, T>(i, value)));
                 }
             }
         }
@@ -75,7 +77,7 @@ namespace Utils.DOD
             T val;
             if (Set.TryRemove(i, out val))
             {
-                DataStreamChanged.Invoke(this, new NotifyDataStreamChangedEventArgs<T>(i, NotifyCollectionChangedAction.Remove,val,default(T)));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new KeyValuePair<int, T>(i, val)));
+                DataStreamChanged.Invoke(this, new DSChangedArgs<T>(i, NotifyCollectionChangedAction.Remove,val,default(T)));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new KeyValuePair<int, T>(i, val)));
                 return val;
             }
             return default(T);
@@ -83,13 +85,13 @@ namespace Utils.DOD
         public void Clear()
         {
             Set.Clear(); 
-            DataStreamChanged.Invoke(this, new NotifyDataStreamChangedEventArgs<T>(-1, NotifyCollectionChangedAction.Reset, default(T), default(T))); //this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            DataStreamChanged.Invoke(this, new DSChangedArgs<T>(-1, NotifyCollectionChangedAction.Reset, default(T), default(T))); //this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
-        public IObservable<NotifyDataStreamChangedEventArgs<T>> ToObservable()
+        public IObservable<DSChangedArgs<T>> ToObservable()
         {
             var foo = Observable
-         .FromEventPattern<NotifyDataStreamChangedEventArgs<T>>(this, "DataStreamChanged")
+         .FromEventPattern<DSChangedArgs<T>>(this, "DataStreamChanged")
          .Select(change => change.EventArgs);
             return foo;
         }

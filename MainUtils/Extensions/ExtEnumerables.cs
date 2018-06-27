@@ -139,5 +139,15 @@ namespace Utils.Extensions
             var list = enumerable as IList<T> ?? enumerable.ToArray();
             return list.Count == 0 ? default(T) : list[r.Next(list.Count)];
         }
+
+        public static IEnumerable<T> ToEnumerable<T>(this T inEnum) where T : Enum
+        {
+            return Enum.GetValues(typeof(T)).Cast<T>();
+        }
+        public static string[] ToNamesList<T>(this T inEnum) where T : Enum
+        {
+            return Enum.GetNames(typeof(T));
+
+        }
     }
 }
