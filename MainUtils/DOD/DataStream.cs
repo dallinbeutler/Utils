@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -33,7 +34,7 @@ namespace Utils.DOD
     //}
 
     // Can't store strings with struct restriction...
-    public class DataStream<T> : INotifyCollectionChanged<T> //where T //: struct
+    public class DataStream<T> : INotifyCollectionChanged<T>, IEnumerable<KeyValuePair<int,T>> //where T //: struct
     {
         ConcurrentDictionary<int, T> Set;
         public event NotifyDataStreamChangedEventHandler<T> DataStreamChanged;
@@ -100,5 +101,15 @@ namespace Utils.DOD
         {
             ToObservable().Merge(ToObservable());
         }
-    }
+
+      public IEnumerator<KeyValuePair<int, T>> GetEnumerator()
+      {
+         return Set.GetEnumerator();
+      }
+
+      IEnumerator IEnumerable.GetEnumerator()
+      {
+         return Set.GetEnumerator();
+      }
+   }
 }

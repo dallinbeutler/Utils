@@ -5086,7 +5086,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "FastMember >= 1.3.0",
+      "Fastmember >= 1.3.0",
       "NETStandard.Library >= 2.0.1",
       "System.Reactive >= 4.0.0"
     ]
@@ -5132,7 +5132,7 @@
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
-          "FastMember": {
+          "Fastmember": {
             "target": "Package",
             "version": "[1.3.0, )"
           },
