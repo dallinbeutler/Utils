@@ -38,7 +38,8 @@ namespace UtilsMain.DOD
    struct Parent : IDisposable
    {
       IDisposable Subscription;
-       public enum LockAxis
+      [Flags]
+      public enum LockAxis
       {
          x   = 0x000001,
          y   = 0x000010,
@@ -50,6 +51,7 @@ namespace UtilsMain.DOD
          pos = 0x000111,
          rot = 0x111000
       }
+      //not actually using LockAxis, but this could be how to specify what you want to adjust on
       public Parent(int parent, int child, LockAxis lockon,  IObservable<DSChangedArgs<Vec2>> position, DataStream<Vec2> posDS)
       {       
          Subscription = position.Where(x=>x.Entity == parent).Subscribe((x) => 
@@ -113,9 +115,7 @@ namespace UtilsMain.DOD
          });
 
          // a subscription to subtract entity 9's position every second
-         Observable.Interval(new TimeSpan(0, 0, 1)).Subscribe((long ticks) => { Position[9] += new Vec2(-1, -1); });
-
-         
+         Observable.Interval(new TimeSpan(0, 0, 1)).Subscribe((long ticks) => { Position[9] += new Vec2(-1, -1); });        
       }
       public void Update()
       {

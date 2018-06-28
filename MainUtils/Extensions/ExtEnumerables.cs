@@ -68,7 +68,7 @@ namespace Utils.Extensions
         }
 
 
-        public static void AddSet<TKey>(this Dictionary<TKey, int> dict, TKey inKey, int value)
+        public static void AddSet<TKey,TValue>(this Dictionary<TKey, int> dict, TKey inKey, int value)
         {
             int tv;
             dict.TryGetValue(inKey, out tv);

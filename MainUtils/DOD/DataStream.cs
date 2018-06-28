@@ -19,7 +19,6 @@ namespace Utils.DOD
         public NotifyCollectionChangedAction Action;
         public T OldVal;
         public T NewVal;
-
         public DSChangedArgs(int entity, NotifyCollectionChangedAction action, T oldVal, T newVal){
             Entity = entity;
             Action = action;
@@ -27,13 +26,11 @@ namespace Utils.DOD
             NewVal = newVal;
         }
     }
-    // Should I do my own Collection change/ datapool enumeration?
-    //public enum EventChange
-    //{
-
-    //}
-
-    // Can't store strings with struct restriction...
+   /// <summary>
+   /// This class is basically for storing values in a way that is easier on memory, 
+   /// while also generating events on property change that can be observed.
+   /// </summary>
+   /// <typeparam name="T"></typeparam>
     public class DataStream<T> : INotifyCollectionChanged<T>, IEnumerable<KeyValuePair<int,T>> //where T //: struct
     {
         ConcurrentDictionary<int, T> Set;
@@ -96,12 +93,6 @@ namespace Utils.DOD
          .Select(change => change.EventArgs);
             return foo;
         }
-
-        public void Merge()
-        {
-            ToObservable().Merge(ToObservable());
-        }
-
       public IEnumerator<KeyValuePair<int, T>> GetEnumerator()
       {
          return Set.GetEnumerator();
