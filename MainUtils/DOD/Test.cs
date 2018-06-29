@@ -12,7 +12,7 @@ using System.Linq;
 using System.Reflection;
 
 namespace UtilsMain.DOD
-{
+{// possible source for inspiration:https://www.learnrxjs.io/recipes/gameloop.html
    struct Vec2
    {
       public float X { get; set; }
@@ -122,10 +122,14 @@ namespace UtilsMain.DOD
          Console.WriteLine("start loop");
 
          ConsoleKeyInfo cki = new ConsoleKeyInfo();
-         
+
+         Stopwatch stopwatch = new Stopwatch();
+         stopwatch.Start();
          // main loop
          while (cki.Key != ConsoleKey.Escape)
          {
+            float delta = stopwatch.ElapsedMilliseconds;
+            stopwatch.Restart();
 
             // change the color of 9 if we press space
             cki = Console.ReadKey();
