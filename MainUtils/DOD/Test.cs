@@ -10,6 +10,7 @@ using System.Threading;
 using Utils.Extensions;
 using System.Linq;
 using System.Reflection;
+using System.Reactive.Concurrency;
 
 namespace UtilsMain.DOD
 {// possible source for inspiration:https://www.learnrxjs.io/recipes/gameloop.html
@@ -125,6 +126,9 @@ namespace UtilsMain.DOD
 
          Stopwatch stopwatch = new Stopwatch();
          stopwatch.Start();
+
+         Observable.Interval(new TimeSpan(), Scheduler.Default );
+
          // main loop
          while (cki.Key != ConsoleKey.Escape)
          {
