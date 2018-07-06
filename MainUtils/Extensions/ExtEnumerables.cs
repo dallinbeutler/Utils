@@ -149,5 +149,12 @@ namespace Utils.Extensions
             return Enum.GetNames(typeof(T));
 
         }
-    }
+
+      public enum SortDirection { Ascending, Descending }
+      public static IEnumerable<T2> Sort<TKey,T2>(this List<T2> list,
+                             Func<T2, TKey> sorter, SortDirection direction)
+      {
+         return direction == SortDirection.Ascending ? list.OrderBy(sorter) : list.OrderByDescending(sorter);
+      }
+   }
 }

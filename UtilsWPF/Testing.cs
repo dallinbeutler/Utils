@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Utils.DOD;
-using UtilsMain.DOD;
+using DOD;
 
 namespace Utils
 {

@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DOD\DOD.csproj">
+      <Project>{09FFBDA8-D20B-4BBF-996C-5929B1EC1FA0}</Project>
+      <Name>DOD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MainUtils\UtilsMain.csproj">
       <Project>{7BE8FD52-9DD9-4508-9903-51C39CC2A6B6}</Project>
       <Name>UtilsMain</Name>

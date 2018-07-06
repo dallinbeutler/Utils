@@ -84,6 +84,11 @@ namespace Utils.GenericMath
             if (a.CompareTo(b) > 0)
                 SwapTemp(ref a, ref b);
         }
+
+      //   public static T nextPowerOf2<T>(this T val) where T : struct, IComparable, IFormattable, IConvertible, IComparable<T>, IEquatable<T>
+      //{
+      //   Tools<T>.RightShift(val,);
+      //}
     }
 
     //http://www.yoda.arachsys.com/csharp/genericoperators.html
@@ -96,7 +101,8 @@ namespace Utils.GenericMath
         internal static Func<T, T, T> Multiply;
         internal static Func<T, T, T> Divide;
         internal static Func<T, T, T> XOR;
-        internal static Func<T, T, bool> LessThan;
+        internal static Func<T, int, T> RightShift;
+      internal static Func<T, T, bool> LessThan;
         internal static Func<T, T, bool> LessThanOrEqual;
         internal static Func<T, T, bool> GreaterThan;
         internal static Func<T, T, bool> GreaterThanOrEqual;
@@ -130,6 +136,8 @@ namespace Utils.GenericMath
                    (Expression.GreaterThanOrEqual(paramA, paramB), paramA, paramB).Compile();
             Equal = System.Linq.Expressions.Expression.Lambda<Func<T, T, bool>>
                    (Expression.Equal(paramA, paramB), paramA, paramB).Compile();
+            RightShift = System.Linq.Expressions.Expression.Lambda<Func<T, int, T>>
+                (Expression.RightShift(paramA,paramB),paramA, paramB).Compile();
         }
     }
 }
