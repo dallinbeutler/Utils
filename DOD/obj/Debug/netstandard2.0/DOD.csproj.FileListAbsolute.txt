@@ -7,3 +7,6 @@ C:\Users\BeutlerD\source\repos\MainUtils\DOD\obj\Debug\netstandard2.0\DOD.Assemb
 C:\Users\BeutlerD\source\repos\MainUtils\DOD\bin\Debug\netstandard2.0\UtilsMain.dll
 C:\Users\BeutlerD\source\repos\MainUtils\DOD\bin\Debug\netstandard2.0\UtilsMain.pdb
 C:\Users\BeutlerD\source\repos\MainUtils\DOD\obj\Debug\netstandard2.0\DOD.csproj.CopyComplete
+C:\Users\BeutlerD\source\repos\MainUtils\DOD\bin\Debug\netstandard2.0\DOD.pdb
+C:\Users\BeutlerD\source\repos\MainUtils\DOD\obj\Debug\netstandard2.0\DOD.dll
+C:\Users\BeutlerD\source\repos\MainUtils\DOD\obj\Debug\netstandard2.0\DOD.pdb

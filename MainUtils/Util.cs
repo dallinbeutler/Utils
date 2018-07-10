@@ -146,6 +146,22 @@ namespace Utils
 
          return n;
       }
+      public static int GetBigger(int x, int y)
+      {
+         return x > y ? x : y;
+      }
+      public static float GetBigger(float x, float y)
+      {
+         return x > y ? x : y;
+      }
+      public static double GetBigger(double x, double y)
+      {
+         return x > y ? x : y;
+      }
+      public static long GetBigger(long x, long y)
+      {
+         return x > y ? x : y;
+      }
    }
 
    /// <summary>

@@ -2,37 +2,39 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using Utils;
 using static Utils.Extensions.ExtEnumerables;
 
 namespace DOD
 {
-   
-   class Atlas
+   internal class Atlas
    {
-
-      class PackImage
+      private class PackImage
       {
          public Bitmap Image;
-         public int LocX;
-         public int LocY;
+         public int posx;
+         public int posy;
          public int activeW;
          public int activeH;
          public int activeXOffset;
          public int activeYOffset;
       }
-      List<PackImage> images = new List<PackImage>();
 
-      void UsedArea(Bitmap image)
+      private List<PackImage> images = new List<PackImage>();
+
+      //Attempts to find the bounding area of the actual used pixels
+      private void UsedArea(Bitmap image)
       {
-         int left = -1, top = -1, right =-1, bottom = -1;
-      
-         for(int xi = 0; xi< image.Width; xi++)
+         int left = -1, top = -1, right = -1, bottom = -1;
+
+         for (int xi = 0; xi < image.Width; xi++)
          {
-            for(int yi = 0; yi< image.Height; yi++)
+            for (int yi = 0; yi < image.Height; yi++)
             {
                if (image.GetPixel(xi, yi).A == 0)
+               {
                   continue;
+               }
                else
                {
                   left = xi;
@@ -41,12 +43,14 @@ namespace DOD
             }
          }
          step1:
-         for (int xi = image.Width-1; xi >= 0; xi--)
+         for (int xi = image.Width - 1; xi >= 0; xi--)
          {
             for (int yi = 0; yi < image.Height; yi++)
             {
                if (image.GetPixel(xi, yi).A == 0)
+               {
                   continue;
+               }
                else
                {
                   right = xi;
@@ -60,7 +64,9 @@ namespace DOD
             for (int xi = 0; xi < image.Width; xi++)
             {
                if (image.GetPixel(xi, yi).A == 0)
+               {
                   continue;
+               }
                else
                {
                   top = yi;
@@ -69,12 +75,14 @@ namespace DOD
             }
          }
          step3:
-         for (int yi = image.Height-1; yi >= 0; yi--)
+         for (int yi = image.Height - 1; yi >= 0; yi--)
          {
             for (int xi = 0; xi < image.Width; xi++)
             {
                if (image.GetPixel(xi, yi).A == 0)
+               {
                   continue;
+               }
                else
                {
                   bottom = yi;
@@ -84,7 +92,7 @@ namespace DOD
          }
          step4:
          {
-            if (left == -1 )
+            if (left == -1)
             {
                Console.WriteLine("EMPTY!");
             }
@@ -94,18 +102,40 @@ namespace DOD
             }
          }
       }
-      void Pack()
+
+      int AtlasWidth;
+      private void Pack()
       {
-         var sorted = images.Sort(x=> (x.Image.Width*x.Image.Height), SortDirection.Descending);
+         var sorted = images.Sort(x => (x.Image.Width * x.Image.Height), SortDirection.Descending);
          //var totalPixels = (int)Math.Sqrt( images.Sum(x => x.Height * x.Width));
          //var largestSquare = Utils.Util.nextPowerOf2(totalPixels);
-         int Width = 2;
-         int Height = 2;
-         foreach (var i in sorted)
          {
-            
+            PackImage first = sorted.First();
+            AtlasWidth = Util.nextPowerOf2(Util.GetBigger(first.activeW, first.activeH));
+         }
+
+         //List<Vector2> topLefts = new List<Vector2>();
+         //topLefts.Add(new Vector2(0, 0));
+         //foreach (var i in sorted)
+         //{
+         //   //foreach
+         //}
+      }
+
+      //bool SpaceLeft(Vector2 topLeft, int Atlaswidth, int width)
+      //{
+      //   if (Util.GetBigger(Atlaswidth - topLeft.X, width));
+      //}
+
+      struct EmptySpace
+      {
+         Rectangle bounds;
+         Atlas Atlas;
+         void UpdateBounds()
+         {
+            bounds.Width = Atlas.AtlasWidth - bounds.X;
+            bounds.Height = Atlas.AtlasWidth - bounds.Y;
          }
       }
-   }
-
-}
+   }//Class
+}//NS
