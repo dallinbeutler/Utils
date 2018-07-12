@@ -13,8 +13,24 @@ using UtilsNET;
 
 namespace Utils
 {// possible source for inspiration:https://www.learnrxjs.io/recipes/gameloop.html
+   public class IE
+   {
+      static void Compose(string DS, Type type, dynamic initVal)
+      {
+         if (!Things.ContainsKey(DS))
+         {
+
+         }
+         //Things.Add(DS,)
+      }
+      static Dictionary<string, DataStream<dynamic>> Things = new Dictionary<string, DataStream<dynamic>>();
+      
+      
+   }
    public class MainLoop
    {
+      
+
       //initiallize our Data collections.
       DataStream<Matrix4> DTransform = new DataStream<Matrix4>();
       DataStream<System.ConsoleColor> DColor = new DataStream<System.ConsoleColor>();

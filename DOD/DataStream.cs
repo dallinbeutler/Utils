@@ -24,12 +24,20 @@ namespace DOD
          NewVal = newVal;
       }
    }
+
+   public interface IDataStream
+   {
+      int Count { get;}
+      bool HasEntity(int ID);
+      void Clear();
+   }
+
    /// <summary>
    /// This class is basically for storing values in a way that is easier on memory, 
    /// while also generating events on property change that can be observed.
    /// </summary>
    /// <typeparam name="T"></typeparam>
-   public class DataStream<T> : INotifyCollectionChanged<T>, IEnumerable<KeyValuePair<int, T>> //where T //: struct
+   public class DataStream<T> : INotifyCollectionChanged<T>, IEnumerable<KeyValuePair<int, T>>, IDataStream//where T //: struct
    {
       private ConcurrentDictionary<int, T> Set;
       public event NotifyDataStreamChangedEventHandler<T> DataStreamChanged;
@@ -46,6 +54,11 @@ namespace DOD
          {
             return Set.Count;
          }
+      }
+
+      public bool HasEntity(int ID)
+      {
+         return Set.Keys.Contains(ID);
       }
       public T this[int i]
       {
