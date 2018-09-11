@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Easing.fs" />
+    <Compile Include="MathExt.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
 

@@ -8,28 +8,45 @@ using System.Reactive.Linq;
 
 namespace DOD
 {
-   public interface INotifyCollectionChanged<T> { event NotifyDataStreamChangedEventHandler<T> DataStreamChanged; }
-   public delegate void NotifyDataStreamChangedEventHandler<T>(object sender, DSChangedArgs<T> args);
-   public struct DSChangedArgs<T>
+
+
+   //public interface INotifyCollectionChanged<T> { event NotifyDataStreamChangedEventHandler<T> DataStreamChanged; }
+
+   //public delegate void NotifyEntityAddedRemovedEventHandler(IDataStream sender, EntityChangedArgs args);
+   public delegate void NotifyDataStreamChangedEventHandler<Key>(IDataStream<Key> sender, EntityChangedArgs<Key> args);
+   public delegate void NotifyDataStreamChangedEventHandler<Key, T>(IDataStream<Key> sender, DSChangedArgs<Key, T> args);
+   public class DSChangedArgs<Key,T> : EntityChangedArgs<Key>
    {
-      public int Entity;
-      public NotifyCollectionChangedAction Action;
       public T OldVal;
       public T NewVal;
-      public DSChangedArgs(int entity, NotifyCollectionChangedAction action, T oldVal, T newVal)
+      public DSChangedArgs(Key entity, NotifyCollectionChangedAction action, T oldVal, T newVal):base(entity,action)
       {
-         Entity = entity;
-         Action = action;
          OldVal = oldVal;
          NewVal = newVal;
       }
    }
-
-   public interface IDataStream
+   public class EntityChangedArgs<Key>
    {
-      int Count { get;}
-      bool HasEntity(int ID);
-      void Clear();
+      public Key Entity;
+      public NotifyCollectionChangedAction Action;
+      public EntityChangedArgs(Key entity, NotifyCollectionChangedAction action)
+      {
+         Entity = entity;
+         Action = action;
+      }
+   }
+
+   public interface IDataStream<Key> 
+   {
+      string Name { get; }
+      int Count { get; }
+       bool HasEntity(Key ID);
+       void Clear();
+       bool RemoveAt(Key ID);
+       void Set(Key ID, object o);
+       object Get(Key ID);
+       event NotifyDataStreamChangedEventHandler<Key> DataStreamChanged;
+
    }
 
    /// <summary>
@@ -37,80 +54,133 @@ namespace DOD
    /// while also generating events on property change that can be observed.
    /// </summary>
    /// <typeparam name="T"></typeparam>
-   public class DataStream<T> : INotifyCollectionChanged<T>, IEnumerable<KeyValuePair<int, T>>, IDataStream//where T //: struct
+   public class DataStream<Key,T> : IDataStream<Key>, IEnumerable,  IEnumerable<KeyValuePair<Key, T>> //INotifyCollectionChanged<T>,
    {
-      private ConcurrentDictionary<int, T> Set;
-      public event NotifyDataStreamChangedEventHandler<T> DataStreamChanged;
+      private ConcurrentDictionary<Key, T> DataSet;
+      public event NotifyDataStreamChangedEventHandler<Key,T> EntityChanged;
+      public event NotifyDataStreamChangedEventHandler<Key> DataStreamChanged;
 
-      public DataStream()
+      //public event NotifyEntityAddedRemovedEventHandler EntityChanged;
+      //public event NotifyEntityAddedRemovedEventHandler DataStreamChanged;
+
+      public IObservable<EntityChangedArgs<Key>> AsObservable { get;}
+      public IObservable<DSChangedArgs<Key,T>> AsObservableDetails { get;}
+      public string Name { get; }
+
+      public DataStream(string Name, IEnumerable<KeyValuePair<Key,T>> comps = null)
       {
-         Set = new ConcurrentDictionary<int, T>();
-         DataStreamChanged = new NotifyDataStreamChangedEventHandler<T>((x, y) => { return; });
+         this.Name = Name;
+
+         this.EntityChanged += DataStream_EntityChanged;
+         this.DataStreamChanged += DataStream_DataStreamChanged;
+         if (comps != null)
+            DataSet = new ConcurrentDictionary<Key, T>(comps);
+         else
+            DataSet = new ConcurrentDictionary<Key, T>();
+         //DataStreamChanged = new NotifyDataStreamChangedEventHandler<T>((x, y) => { return; });
+         AsObservable = Observable
+         .FromEventPattern<EntityChangedArgs<Key>>(this, "DataStreamChanged")
+         .Select(change => change.EventArgs);
+
+         AsObservableDetails = Observable
+         .FromEventPattern<DSChangedArgs<Key, T>>(this, "EntityChanged")
+         .Select(change => change.EventArgs);
       }
+
+      private void DataStream_DataStreamChanged(IDataStream<Key> sender, EntityChangedArgs<Key> args)
+      {
+      }
+
+      private void DataStream_EntityChanged(IDataStream<Key> sender, DSChangedArgs<Key, T> args)
+      {
+         DataStreamChanged.Invoke(this, args);
+      }
+
+      
 
       public int Count
       {
          get
          {
-            return Set.Count;
+            return DataSet.Count;
          }
       }
 
-      public bool HasEntity(int ID)
+      public bool HasEntity(Key ID)
       {
-         return Set.Keys.Contains(ID);
+         return DataSet.Keys.Contains(ID);
       }
-      public T this[int i]
+      public T this[Key i]
       {
          get
          {
-            return Set[i];
+            return DataSet[i];
          }
          set
          {
-            if (!Set.ContainsKey(i))
+            if (!DataSet.ContainsKey(i))
             {
-               Set[i] = value;
-               DataStreamChanged.Invoke(this, new DSChangedArgs<T>(i, NotifyCollectionChangedAction.Add, default(T), value));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new KeyValuePair<int, T>(i, value)));
+               DataSet[i] = value;
+               EntityChanged.Invoke(this, new DSChangedArgs<Key,T>(i, NotifyCollectionChangedAction.Add, default(T), value));
             }
-            else if (!EqualityComparer<T>.Default.Equals(Set[i], value))
+            else if (!EqualityComparer<T>.Default.Equals(DataSet[i], value))
             {
-               Set[i] = value;
-               DataStreamChanged.Invoke(this, new DSChangedArgs<T>(i, NotifyCollectionChangedAction.Replace, default(T), value));//(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, new KeyValuePair<int, T>(i, value)));
+               DataSet[i] = value;
+               EntityChanged.Invoke(this, new DSChangedArgs<Key,T>(i, NotifyCollectionChangedAction.Replace, default(T), value));//(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, new KeyValuePair<int, T>(i, value)));
             }
          }
       }
-      public T RemoveAt(int i)
+      public bool RemoveAt(Key i)
       {
          T val;
-         if (Set.TryRemove(i, out val))
+         if (DataSet.TryRemove(i, out val))
          {
-            DataStreamChanged.Invoke(this, new DSChangedArgs<T>(i, NotifyCollectionChangedAction.Remove, val, default(T)));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new KeyValuePair<int, T>(i, val)));
+            EntityChanged.Invoke(this, new DSChangedArgs<Key,T>(i, NotifyCollectionChangedAction.Remove, val, default(T)));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new KeyValuePair<int, T>(i, val)));
+            return true;
+         }
+         return false;
+      }
+      public T PopAt(Key i)
+      {
+         T val;
+         if (DataSet.TryRemove(i, out val))
+         {
+            EntityChanged.Invoke(this, new DSChangedArgs<Key,T>(i, NotifyCollectionChangedAction.Remove, val, default(T)));//this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new KeyValuePair<int, T>(i, val)));
             return val;
          }
          return default(T);
       }
       public void Clear()
       {
-         Set.Clear();
-         DataStreamChanged.Invoke(this, new DSChangedArgs<T>(-1, NotifyCollectionChangedAction.Reset, default(T), default(T))); //this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+         DataSet.Clear();
+         EntityChanged.Invoke(this, new DSChangedArgs<Key,T>(default(Key), NotifyCollectionChangedAction.Reset, default(T), default(T))); //this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
       }
 
-      public IObservable<DSChangedArgs<T>> ToObservable()
+
+      public  IEnumerator<KeyValuePair<Key, T>> GetEnumerator()
       {
-         var foo = Observable
-      .FromEventPattern<DSChangedArgs<T>>(this, "DataStreamChanged")
-      .Select(change => change.EventArgs);
-         return foo;
-      }
-      public IEnumerator<KeyValuePair<int, T>> GetEnumerator()
-      {
-         return Set.GetEnumerator();
+         return DataSet.GetEnumerator();
       }
 
       IEnumerator IEnumerable.GetEnumerator()
       {
-         return Set.GetEnumerator();
+         return DataSet.GetEnumerator();
       }
+
+      public void Set(Key ID, object o)
+      {
+         if (o is T t)
+          this[ID] = t;
+         else
+         {
+            Console.WriteLine("Error converting "+ o.GetType() + " to " + typeof(T));
+         }
+      }
+
+      public object Get(Key ID)
+      {
+         return this[ID];
+      }
+
    }
 }

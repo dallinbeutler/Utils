@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "a6d3e0f198912faef31b23511df58ecaed0ee184"
+    "signature": "9eb936dc94b8da30f744e21a3497a01b1b26225b"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,16 +9,19 @@
     ".NETStandard,Version=v2.0/": {
       "UtilsFS/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "4.3.4",
-          "NETStandard.Library": "2.0.1"
+          "FSharp.Core": "4.5.0",
+          "NETStandard.Library": "2.0.3"
         },
         "runtime": {
           "UtilsFS.dll": {}
         }
       },
-      "FSharp.Core/4.3.4": {
+      "FSharp.Core/4.5.0": {
         "runtime": {
-          "lib/netstandard1.6/FSharp.Core.dll": {}
+          "lib/netstandard1.6/FSharp.Core.dll": {
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "2018.6.5.4"
+          }
         },
         "resources": {
           "lib/netstandard1.6/cs/FSharp.Core.resources.dll": {
@@ -66,7 +69,7 @@
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
@@ -79,12 +82,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FSharp.Core/4.3.4": {
+    "FSharp.Core/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-u2UeaUl1pt/Lktdpzq3AsaRmOV1mOiQaSbZgYqQQYuqBSjnILWemetff4xMZIAZi0241jlIkcrJQsU5PlLwIJA==",
-      "path": "fsharp.core/4.3.4",
-      "hashPath": "fsharp.core.4.3.4.nupkg.sha512"
+      "sha512": "sha512-uTxylzhk+Qi3uT/kSB33jC/AY1se99vxg7opq6UFZiBL9l1RDNAeXLMFew5+HavGVPsMZtYy5P3QTsaFTCaFjQ==",
+      "path": "fsharp.core/4.5.0",
+      "hashPath": "fsharp.core.4.5.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -93,12 +96,12 @@
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
-    "NETStandard.Library/2.0.1": {
+    "NETStandard.Library/2.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
-      "path": "netstandard.library/2.0.1",
-      "hashPath": "netstandard.library.2.0.1.nupkg.sha512"
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     }
   }
 }

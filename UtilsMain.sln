@@ -6,10 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsMain", "MainUtils\UtilsMain.csproj", "{7BE8FD52-9DD9-4508-9903-51C39CC2A6B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsNetFramework", "UtilsWPF\UtilsNetFramework.csproj", "{91314F8E-45B0-40AA-B26D-5FFED30F34CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DCD0F4CC-22F7-44DF-B964-87571F37CA34} = {DCD0F4CC-22F7-44DF-B964-87571F37CA34}
+	EndProjectSection
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "UtilsFS", "UtilsFS\UtilsFS.fsproj", "{DCD0F4CC-22F7-44DF-B964-87571F37CA34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DOD", "DOD\DOD.csproj", "{09FFBDA8-D20B-4BBF-996C-5929B1EC1FA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DOD", "DOD\DOD.csproj", "{09FFBDA8-D20B-4BBF-996C-5929B1EC1FA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

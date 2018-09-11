@@ -1,0 +1,113 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs " #>
+<#
+List<string> allNumTypes = new List<string>()
+{
+"byte"
+,"sbyte"
+,"short"
+,"ushort"
+,"int"
+,"uint"
+,"long"
+,"ulong"
+,"float"
+,"double"
+,"decimal"
+};
+List<string> intCastable = new List<string>()
+{
+"int"
+,"uint"
+,"long"
+,"ulong"
+,"float"
+,"double"
+,"decimal"
+};
+#>
+
+//Auto Geenerated
+
+namespace Utils
+{
+	public static class MathExt
+	{
+#region Clamp
+      <#
+	  ReplaceType(@"
+		public static @var1 Clamp(this @var1 value, @var1 min, @var1 max)
+		{ return (value < min)? min:((value > max)?max:value); } ",allNumTypes);
+		#>
+#endregion
+#region GetBigger
+		<#
+	  ReplaceType(@"
+		public static @var1 GetBigger(this @var1 value, @var1 other)
+		{ return (value > other)? value : other; }",allNumTypes);
+	  #>
+#endregion
+#region GetSmaller
+		<#
+	  ReplaceType(@"
+		public static @var1 GetSmaller(this @var1 value, @var1 other)
+		{ return (value > other)? value : other; }",allNumTypes);
+	  #>
+#endregion
+#region Lerp
+      <#
+	  ReplaceType(@"
+		public static @var1 Lerp(this @var1 value1, @var1 value2, double percent)
+		{ return (@var1)(value1 * (1 - percent)) + (@var1)(value2 * percent); } ",intCastable.Where(x=> x !="decimal"));
+		#>
+
+		public static decimal Lerp(this decimal value1, decimal value2, decimal percent)
+		{ return (value1 * (1 - percent)) + (value2 * percent); }
+#endregion
+#region LerpSafe
+      <#
+	  ReplaceType(@"
+		public static @var1 LerpSafe(this @var1 value1, @var1 value2, double percent)
+		{ 
+		 var p = Clamp(percent,0,1);
+		return (@var1)(value1 * (1 - p)) + (@var1)(value2 * p); 
+		} ",intCastable.Where(x=> x !="decimal"));
+		#>
+
+		public static decimal LerpSafe(this decimal value1, decimal value2, decimal percent)
+		{
+			var p = Clamp(percent,0,1);
+			return (value1 * (1 - p)) + (value2 * p); 
+		}
+#endregion
+#region InterpBy
+      <#
+	  ReplaceType(@"
+		public static @var1 InterpBy(this @var1 value, @var1 goal, @var1 amount)
+		{ 
+			return LerpSafe(value, goal, (goal-value)/System.Math.Abs(amount));
+		} ",intCastable.Where(x=> x !="ulong"));
+		#>
+
+		public static ulong InterpBy(this ulong value, ulong goal, ulong amount)
+		{ 
+			return LerpSafe(value, goal, (goal-value)/amount);
+		} 
+#endregion
+	}
+}
+<#+
+void ReplaceType(string InCode, IEnumerable<string> types)
+{
+	foreach(var t in types)
+	{
+	WriteLine(InCode.Replace("@var1",t));
+	}
+}
+
+
+#>

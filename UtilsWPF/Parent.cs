@@ -22,8 +22,9 @@ namespace UtilsNET
       }
 
       //not actually using LockAxis, but this could be how to specify what you want to adjust on
-      public Parent(int parent, int child, LockAxis lockon, IObservable<DSChangedArgs<Matrix4>> position, DataStream<Matrix4> posDS)
+      public Parent(int parent, int child, LockAxis lockon, DataStream<long,Matrix4> posDS)
       {
+         var position = posDS.AsObservableDetails;
          if (lockon == LockAxis.all)
          {
             Subscription = position.Where(x => x.Entity == parent).Subscribe((x) =>

@@ -37,13 +37,13 @@ namespace Utils.Extensions
             return idx;
         }
 
-        public static string ListToString(this IEnumerable<object> inString, string separator)
+        public static string ToString(this IEnumerable<object> inString, string separator)
         {
             return String.Join(separator, inString.ToArray());
         }
         public static string ToString<T>(this ObservableCollection<T> inList, string separator) where T : class
         {
-            return ListToString(inList.AsEnumerable(), separator);
+            return ToString(inList.AsEnumerable(), separator);
         }
 
         public static bool MoveToFrontOfListWhere<T>(this List<T> collection, Func<T, bool> predicate)

@@ -13,12 +13,12 @@ namespace UtilsNET
    }
    public class DilationSystem
    {
-      public DataStream<Dil> stream;
+      public DataStream<long,Dil> stream;
 
       public float GlobalDilation = 1.0f;
       public DilationSystem()
       {
-         stream = new DataStream<Dil>();
+         stream = new DataStream<long,Dil>("Dilation");
          //We could treat these like Global entities not affected by Entity Dilation, and is [not] affected by the global dilation
          stream[-1] = new Dil() { GlobalAffects = true, IndividualAmount = 1.0f };
          stream[-2] = new Dil() { GlobalAffects = false, IndividualAmount = 1.0f };
